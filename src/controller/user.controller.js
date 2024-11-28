@@ -5,8 +5,8 @@ const CustomError = require('../utils/CustomError.util')
 exports.registration = async (req, res, next) => {
   try {
     console.log('Request Body:', req.body)
-
-    const { full_name, email, password } = req.body
+ 
+     const { full_name, email, password } = req.body
     console.log('Full Name:', full_name)
 
     // Validate input

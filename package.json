@@ -8,6 +8,9 @@
     "dev": "nodemon --quiet index.js",
     "eslint": "eslint ."
   },
+  "lint-staged": {
+  "*.js": "eslint --fix"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -24,6 +27,7 @@
     "cli-color": "^2.0.4",
     "eslint": "^8.57.1",
     "husky": "^7.0.4",
+    "lint-staged": "^15.2.10",
     "nodemon": "^3.1.7"
   }
 }
