@@ -8,11 +8,8 @@
     "dev": "nodemon --quiet index.js",
     "eslint": "npx eslint ."
   },
-  "lint-staged": {
-    "*.js": [
-      "eslint",
-      "git add ."
-    ]
+ "lint-staged": {
+    "*.js": "eslint"
   },
   "keywords": [],
   "author": "",
