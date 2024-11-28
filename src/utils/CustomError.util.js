@@ -16,23 +16,23 @@ class CustomError extends Error {
   }
 
   static Forbidden(message = 'Forbidden', details) {
-    return new CustomError(403, message, details)
+    return new CustomError(403, message, details) 
   }
 
   static NotFound(message = 'Not Found', details) {
     return new CustomError(404, message, details)
   }
-
-  static InternalServerError(message = 'Internal Server Error', details) {
-    return new CustomError(500, message, details)
-  }
-
+  
   static Conflict(message = 'Conflict', details) {
     return new CustomError(409, message, details)
   }
 
   static UnprocessableEntity(message = 'Unprocessable Entity', details) {
     return new CustomError(422, message, details)
+  }
+
+  static InternalServerError(message = 'Internal Server Error', details) {
+    return new CustomError(500, message, details)
   }
 
   // New static methods for status codes 503 and 504

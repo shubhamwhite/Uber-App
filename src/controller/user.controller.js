@@ -1,5 +1,6 @@
 const { userModel : _userModel } = require('../models/user.model')
 const CustomError = require('../utils/CustomError.util')
+const { createSuccessResponse: _Success } = require('../constant/response.constant')
 
 // * Register controller function
 exports.registration = async (req, res, next) => {
@@ -20,7 +21,7 @@ exports.registration = async (req, res, next) => {
     // Check if user already exists
     const existingUser = await _userModel.findOne({ email })
     if (existingUser) {
-      return res.status(400).json({ message: 'User already exists' })
+      throw new CustomError(409, 'User already exists')
     }
 
     // Hash password
@@ -39,9 +40,8 @@ exports.registration = async (req, res, next) => {
     // Generate authentication token
     const token = user.generateAuthToken()
 
-    res.status(201).json({ user, token })
+    res.status(200).json(_Success('User registration successfully', { user, token }))
   } catch (error) {
-    console.log(error, 'Error during registration')
     next(error)
   }
 }
@@ -54,21 +54,20 @@ exports.login = async (req, res, next) => {
     const user = await _userModel.findOne({ email }).select('+password')
 
     if (!user) {
-      return res.status(401).json({ message: 'Invalid user or password' })
+      throw new CustomError(400, 'Invalid user or password')
     }
 
     const isMatch = await user.comparePassword(password)
 
     if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid user or password' })
+      throw new CustomError(400, 'Invalid user or password')
     }
 
     const token = user.generateAuthToken()
 
-    res.status(200).json({ user, token })
+    res.status(200).json(_Success('User login successfully', { user, token }))
 
   } catch (error) {
-    console.log(error, 'Error during registration')
     next(error)
   }
 }
