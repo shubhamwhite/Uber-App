@@ -7,7 +7,8 @@ This project provides a complete user registration system using Node.js, Express
 ## Key Highlights
 
 ### Keywords Passed
-- **Registration Inputs**: 
+
+- **Registration Inputs**:
   - `full_name` (with nested `first_name` and `last_name`)
   - `email`
   - `password`
@@ -23,10 +24,11 @@ This project provides a complete user registration system using Node.js, Express
 ## Database Schema and Tables
 
 - **Database**: MongoDB
-- **Collection/Table**: 
+- **Collection/Table**:
   - `user` (User data is stored in this collection)
 
 ### Fields in User Schema:
+
 1. `full_name` (Object)
    - `first_name` (String, Required, MinLength: 3)
    - `last_name` (String, Optional, MinLength: 3)
@@ -39,9 +41,10 @@ This project provides a complete user registration system using Node.js, Express
 ## Error Handling
 
 ### Error Cases:
+
 1. **Missing Input Fields**:
    - Example: `first_name`, `email`, or `password` missing.
-   - **Response**: 
+   - **Response**:
      ```json
      {
        "message": "Email and password are required"
@@ -49,7 +52,7 @@ This project provides a complete user registration system using Node.js, Express
      ```
 2. **User Already Exists**:
    - When trying to register an email already in use.
-   - **Response**: 
+   - **Response**:
      ```json
      {
        "message": "User already exists"
@@ -84,7 +87,7 @@ This project provides a complete user registration system using Node.js, Express
     "email": "alice.smith@example.com",
     "password": "securepassword123"
   }
-
+  ```
 
 # User Login Module
 
@@ -95,6 +98,7 @@ This project provides a user login system using Node.js, Express, and MongoDB wi
 ## Key Highlights
 
 ### Keywords Passed
+
 - **Login Inputs**:
   - `email` (Required, Valid email format)
   - `password` (Required, Minimum 6 characters)
@@ -110,10 +114,11 @@ This project provides a user login system using Node.js, Express, and MongoDB wi
 ## Database Schema and Tables
 
 - **Database**: MongoDB
-- **Collection/Table**: 
+- **Collection/Table**:
   - `user` (User data is stored in this collection)
 
 ### Fields in User Schema:
+
 1. `full_name` (Object)
    - `first_name` (String, Required, MinLength: 3)
    - `last_name` (String, Optional, MinLength: 3)
@@ -126,6 +131,7 @@ This project provides a user login system using Node.js, Express, and MongoDB wi
 ## Error Handling
 
 ### Error Cases:
+
 1. **Missing Input Fields**:
    - Example: `email` or `password` missing.
    - **Response**:
@@ -167,3 +173,4 @@ This project provides a user login system using Node.js, Express, and MongoDB wi
     "email": "user@example.com",
     "password": "password123"
   }
+  ```

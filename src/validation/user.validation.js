@@ -55,7 +55,9 @@ const validateUserLogin = (req, res, next) => {
   })
 
   if (error) {
-    const validationMessages = error.details.map((detail) => detail.message).join(', ')
+    const validationMessages = error.details
+      .map((detail) => detail.message)
+      .join(', ')
     console.log(validationMessages, 'error message')
     throw CustomError.BadRequest('Validation failed', validationMessages)
   }

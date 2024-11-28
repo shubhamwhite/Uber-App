@@ -16,13 +16,13 @@ class CustomError extends Error {
   }
 
   static Forbidden(message = 'Forbidden', details) {
-    return new CustomError(403, message, details) 
+    return new CustomError(403, message, details)
   }
 
   static NotFound(message = 'Not Found', details) {
     return new CustomError(404, message, details)
   }
-  
+
   static Conflict(message = 'Conflict', details) {
     return new CustomError(409, message, details)
   }

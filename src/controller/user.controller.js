@@ -1,6 +1,8 @@
-const { userModel : _userModel } = require('../models/user.model')
+const { userModel: _userModel } = require('../models/user.model')
 const CustomError = require('../utils/CustomError.util')
-const { createSuccessResponse: _Success } = require('../constant/response.constant')
+const {
+  createSuccessResponse: _Success,
+} = require('../constant/response.constant')
 
 // * Register controller function
 exports.registration = async (req, res, next) => {
@@ -40,7 +42,9 @@ exports.registration = async (req, res, next) => {
     // Generate authentication token
     const token = user.generateAuthToken()
 
-    res.status(200).json(_Success('User registration successfully', { user, token }))
+    res
+      .status(200)
+      .json(_Success('User registration successfully', { user, token }))
   } catch (error) {
     next(error)
   }
@@ -66,7 +70,6 @@ exports.login = async (req, res, next) => {
     const token = user.generateAuthToken()
 
     res.status(200).json(_Success('User login successfully', { user, token }))
-
   } catch (error) {
     next(error)
   }
