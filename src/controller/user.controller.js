@@ -74,3 +74,13 @@ exports.login = async (req, res, next) => {
     next(error)
   }
 }
+
+// * User profile function
+
+exports.getProfile = async (req, res, next) => {
+  try {
+    res.status(200).json(_Success('User profile retrieve successful', req.user))
+  } catch (error) {
+    next(error)
+  }
+}

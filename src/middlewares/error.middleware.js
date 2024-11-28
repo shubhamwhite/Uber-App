@@ -1,5 +1,6 @@
 const config = require('../config/general.config')
-const errorMiddleware = (err, req, res, next) => {
+
+exports.errorMiddleware = (err, req, res, next) => {
   const statusCode = err.statusCode || 500
   const message = err.message || 'Internal Server Error'
   const details = err.details || null
@@ -19,5 +20,3 @@ const errorMiddleware = (err, req, res, next) => {
     })
   }
 }
-
-module.exports = errorMiddleware
