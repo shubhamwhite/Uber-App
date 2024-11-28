@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use('/api/v1/user', require('../src/router/user.routes'))
 
-// testing api
+// testing api create
 app.get('/', (req, res) => {
   res.json({ message: 'testing application' })
 })
