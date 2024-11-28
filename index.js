@@ -3,6 +3,7 @@ const config = require('./src/config/general.config')
 const clc = require('./src/helper/cliColor.helper')
 const connectToDb = require('./src/models')
 
+// Port connection
 app.listen(config.PORT, (error) => {
   connectToDb()
   const PORT = config.PORT
