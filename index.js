@@ -9,6 +9,6 @@ app.listen(config.PORT, (error) => {
   if (error) {
     console.log('port connection failed')
   } else {
-    console.log(clc.success(`User service run on ${PORT} port number`))
+    console.log(clc.success(`\nUser service run on ${PORT} port number 🚀`))
   }
 })
