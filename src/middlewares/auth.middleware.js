@@ -1,5 +1,4 @@
 const { userModel: _userModel } = require('../models/user.model')
-const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const CustomError = require('../utils/CustomError.util')
 const config = require('../config/general.config')
