@@ -6,10 +6,15 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon --quiet index.js",
-    "eslint": "npx eslint ."
+    "eslint": "npx eslint .",
+    "prepare": "husky install"
   },
- "lint-staged": {
-    "*.js": "eslint"
+  "lint-staged": {
+    "src/**/*.ts": [
+      "eslint",
+      "eslint --max-warnings 0",
+      "git add"
+    ]
   },
   "keywords": [],
   "author": "",
