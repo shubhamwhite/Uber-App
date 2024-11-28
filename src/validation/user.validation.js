@@ -1,7 +1,7 @@
 const Joi = require('joi')
 const CustomError = require('../utils/CustomError.util') // Assuming you have the CustomError class in util/errorHandler
 
-const userValidationSchema = Joi.object({
+const userRegiValidationSchema = Joi.object({
   full_name: Joi.object({
     first_name: Joi.string().min(3).required().messages({
       'string.min': 'First name must be at least 3 characters long.',
@@ -23,8 +23,8 @@ const userValidationSchema = Joi.object({
 })
 
 // Middleware function
-const validateUser = (req, res, next) => {
-  const { error } = userValidationSchema.validate(req.body, {
+const validateUserRegistration = (req, res, next) => {
+  const { error } = userRegiValidationSchema.validate(req.body, {
     abortEarly: false,
   })
 
@@ -37,4 +37,30 @@ const validateUser = (req, res, next) => {
   next()
 }
 
-module.exports = validateUser
+const userLoginValidationSchema = Joi.object({
+  email: Joi.string().email().required().messages({
+    'string.email': 'Email must be a valid email address.',
+    'any.required': 'Email is required.',
+  }),
+  password: Joi.string().min(6).required().messages({
+    'string.min': 'Password must be at least 6 characters long.',
+    'any.required': 'Password is required.',
+  }),
+})
+
+// Middleware function
+const validateUserLogin = (req, res, next) => {
+  const { error } = userLoginValidationSchema.validate(req.body, {
+    abortEarly: false,
+  })
+
+  if (error) {
+    const validationMessages = error.details.map((detail) => detail.message).join(', ')
+    console.log(validationMessages, 'error message')
+    throw CustomError.BadRequest('Validation failed', validationMessages)
+  }
+
+  next()
+}
+
+module.exports = { validateUserRegistration, validateUserLogin }

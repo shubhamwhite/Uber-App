@@ -86,3 +86,81 @@ This project provides a complete user registration system using Node.js, Express
   }
 
 
+# User Login Module
+
+This project provides a user login system using Node.js, Express, and MongoDB with Mongoose. It includes features like input validation, password authentication, and JWT-based authentication for secure access.
+
+---
+
+## Key Highlights
+
+### Keywords Passed
+- **Login Inputs**:
+  - `email` (Required, Valid email format)
+  - `password` (Required, Minimum 6 characters)
+- **Generated Outputs**:
+  - JWT Token for user authentication
+  - User object with relevant details
+- **Other Keywords**:
+  - Password Comparison (Using `comparePassword` method)
+  - JWT Authentication
+
+---
+
+## Database Schema and Tables
+
+- **Database**: MongoDB
+- **Collection/Table**: 
+  - `user` (User data is stored in this collection)
+
+### Fields in User Schema:
+1. `email` (String, Required, Unique)
+2. `password` (String, Required, Select: false) - Contains the hashed password
+3. `name` (String, Optional)
+
+---
+
+## Error Handling
+
+### Error Cases:
+1. **Missing Input Fields**:
+   - Example: `email` or `password` missing.
+   - **Response**:
+     ```json
+     {
+       "message": "Email and password are required"
+     }
+     ```
+2. **Invalid Credentials**:
+   - When the provided email or password is incorrect.
+   - **Response**:
+     ```json
+     {
+       "message": "Invalid user or password"
+     }
+     ```
+3. **Validation Errors**:
+   - If the input does not match the expected format (e.g., invalid email or weak password).
+   - **Response**:
+     ```json
+     {
+       "message": "Email must be a valid email address. Password must be at least 6 characters long."
+     }
+     ```
+
+---
+
+## Request and Response
+
+### Request (API Endpoint)
+
+**POST /login**
+
+- **Headers**:
+  - `Content-Type: application/json`
+- **Body Example**:
+  ```json
+  {
+    "email": "user@example.com",
+    "password": "password123"
+  }

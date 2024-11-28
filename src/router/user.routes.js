@@ -1,10 +1,10 @@
 const router = require('express').Router()
-const validateUser = require('../middlewares/user.validation')
 const errorMiddleware = require('../middlewares/error.middleware')
-const { registration } = require('../controller/user.controller')
+const { registration, login } = require('../controller/user.controller')
+const { validateUserRegistration, validateUserLogin } = require('../validation/user.validation')
 
-router.route('/register').post(validateUser, registration)
-router.route('login').post()
+router.route('/register').post(validateUserRegistration, registration)
+router.route('/login').post(validateUserLogin, login)
 
 router.use(errorMiddleware)
 
