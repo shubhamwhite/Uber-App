@@ -1,4 +1,3 @@
-const { userModel: _userModel } = require('../models/user.model')
 const { JwtUtil } = require('../utils/Jwt.util')
 const CustomError = require('../utils/CustomError.util')
 
