@@ -79,7 +79,8 @@ exports.login = async (req, res, next) => {
 
 exports.getProfile = async (req, res, next) => {
   try {
-    res.status(200).json(_Success('User profile retrieve successful', req.user))
+    const getProfile = await _userModel.findOne({ _id: req.user._id }).select('-password -updatedAt -__v')
+    res.status(200).json(_Success('User profile retrieve successful', getProfile))
   } catch (error) {
     next(error)
   }

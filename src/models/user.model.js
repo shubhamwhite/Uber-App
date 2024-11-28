@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-const config = require('../config/general.config')
+const { JwtUtil } = require('../utils/Jwt.util')
 
 const userSchema = new mongoose.Schema({
   full_name: {
@@ -26,6 +25,12 @@ const userSchema = new mongoose.Schema({
     required: true,
     select: false, // Hide the password when querying for the user
   },
+  role: {
+    type: String,
+    enum: ['driver', 'passenger'],
+    required: true,
+    default: 'passenger', // Default to passenger if no role is specified
+  },
   socket_id: {
     type: String,
   },
@@ -33,7 +38,7 @@ const userSchema = new mongoose.Schema({
 
 // Instance method to generate auth token
 userSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign({ _id: this._id }, config.JWT_SECRET)
+  const token = JwtUtil.sign({ _id: this._id })
   return token
 }
 

@@ -1,5 +1,5 @@
 const app = require('./src/app')
-const config = require('./src/config/general.config')
+const config = require('./src/config/app.config')
 const clc = require('./src/helper/cliColor.helper')
 const connectToDb = require('./src/models')
 

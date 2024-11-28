@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const config = require('../config/general.config')
+const config = require('../config/app.config')
 const clc = require('../helper/cliColor.helper')
 async function connectToDb() {
   try {

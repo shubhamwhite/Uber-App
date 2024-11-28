@@ -1,4 +1,4 @@
-const config = require('../config/general.config')
+const config = require('../config/app.config')
 
 exports.errorMiddleware = (err, req, res, next) => {
   const statusCode = err.statusCode || 500
