@@ -4,6 +4,7 @@ const errorMiddleware = require('../middlewares/error.middleware')
 const { registration } = require('../controller/user.controller')
 
 router.route('/register').post(validateUser, registration)
+router.route('login').post()
 
 router.use(errorMiddleware)
 
