@@ -114,9 +114,12 @@ This project provides a user login system using Node.js, Express, and MongoDB wi
   - `user` (User data is stored in this collection)
 
 ### Fields in User Schema:
-1. `email` (String, Required, Unique)
-2. `password` (String, Required, Select: false) - Contains the hashed password
-3. `name` (String, Optional)
+1. `full_name` (Object)
+   - `first_name` (String, Required, MinLength: 3)
+   - `last_name` (String, Optional, MinLength: 3)
+2. `email` (String, Required, Unique, MinLength: 5)
+3. `password` (String, Required, Select: false)
+4. `socket_id` (String, Optional)
 
 ---
 
