@@ -1,3 +1,10 @@
-#!/bin/sh    
-. "$(dirname "$0")/_/husky.sh"    
-npx eslint .npx lint-staged
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+COMMIT_MSG=$(cat "$1")
+
+# Check if the commit message contains one of the keywords: wrn, msg, sug
+if [[ ! "$COMMIT_MSG" =~ \b(wrn|msg|sug)\b ]]; then
+  echo "Commit message must contain one of the following keywords: wrn, msg, sug."
+  exit 1
+fi
