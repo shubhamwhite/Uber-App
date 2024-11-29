@@ -1,7 +1,7 @@
 const app = require('./src/app')
 const config = require('./src/config/app.config')
 const clc = require('./src/helper/cliColor.helper')
-const connectToDb = require('./src/models')
+const { connectToDb } = require('./src/models')
 
 // Port connect
 app.listen(config.PORT, (error) => {
