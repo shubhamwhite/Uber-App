@@ -1,0 +1,5 @@
+// build container
+sudo docker build -t uber-docker-image -f docker/Dockerfile .
+
+// run app in docker
+sudo docker run --rm -d -p 4000:4000 -v $(pwd):/app --name uber-docker-container uber-docker-image
