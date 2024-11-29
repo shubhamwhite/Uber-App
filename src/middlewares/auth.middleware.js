@@ -17,7 +17,6 @@ exports.authUser = async (req, res, next) => {
     return next()
 
   } catch (error) {
-
     next (error)
   }
 
