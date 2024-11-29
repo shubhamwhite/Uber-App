@@ -12,7 +12,7 @@ const {
   validateUserLogin,
 } = require('../validation/user.validation')
 
-// router
+// routes
 router.route('/register').post(validateUserRegistration, registration)
 router.route('/login').post(validateUserLogin, login)
 router.route('/profile').get(authUser, getProfile)
