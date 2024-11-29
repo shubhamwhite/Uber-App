@@ -174,3 +174,80 @@ This project provides a user login system using Node.js, Express, and MongoDB wi
     "password": "password123"
   }
   ```
+
+
+# Health Check Controller
+
+This controller provides an endpoint for performing a health check on the server. It checks the uptime, system resource usage, and other services like Redis, and returns the server's current health status.
+
+## Functions
+
+### `formatBytes(bytes, decimals = 2)`
+Converts bytes into a human-readable format such as KB, MB, GB, etc.
+
+#### Parameters:
+- `bytes` (number): The size in bytes to convert.
+- `decimals` (number, optional): The number of decimal places to display (default is 2).
+
+#### Returns:
+- A string representing the formatted size (e.g., "10.5 MB").
+
+### `formatUptime(uptimeInSeconds)`
+Converts the uptime in seconds into a human-readable format (hours, minutes, seconds).
+
+#### Parameters:
+- `uptimeInSeconds` (number): The uptime of the process in seconds.
+
+#### Returns:
+- A string representing the uptime in a readable format (e.g., "1h 23m 45s").
+
+### `healthCheck(req, res, next)`
+The main function that handles the health check endpoint. It checks the server's status, including uptime, memory usage, CPU usage, and services like Redis.
+
+#### Parameters:
+- `req` (object): The request object.
+- `res` (object): The response object.
+- `next` (function): The next middleware function (not used in this example).
+
+#### Returns:
+- A JSON response with the following structure:
+  - `uptime`: The server's uptime formatted as a string.
+  - `message`: A message indicating the success or failure of the health check ("OK" or "FAILED").
+  - `timestamp`: The current timestamp of the health check request.
+  - `node`: An object with:
+    - `status`: The status of the Node.js process ("OK" or "ERROR").
+    - `version`: The current Node.js version.
+    - `memoryUsage`: An object with memory usage stats (`rss`, `heapTotal`, `heapUsed`, `external`, `arrayBuffers`).
+    - `cpuUsage`: An object with CPU usage stats (`user`, `system`).
+  - `services`: An object with services to check. By default, it includes a `redis` field with the value "Pending" (you can add additional service checks as needed).
+  - `error`: In case of failure, this will contain the error message.
+
+#### Example Response (Success):
+```json
+{
+  "status": 200,
+  "message": "Health check successful",
+  "data": {
+    "uptime": "1h 23m 45s",
+    "message": "OK",
+    "timestamp": 1631041080000,
+    "node": {
+      "status": "OK",
+      "version": "v14.17.0",
+      "memoryUsage": {
+        "rss": "50 MB",
+        "heapTotal": "30 MB",
+        "heapUsed": "25 MB",
+        "external": "10 MB",
+        "arrayBuffers": "5 MB"
+      },
+      "cpuUsage": {
+        "user": "5.32 ms",
+        "system": "3.21 ms"
+      }
+    },
+    "services": {
+      "redis": "Pending"
+    }
+  }
+}
