@@ -19,4 +19,4 @@ router.route('/profile').get(authUser, getProfile)
 router.route('/logout').post(authUser, logout)
 router.use(errorMiddleware)
 
-module.exports = router
+module.exports = router // expoert files
