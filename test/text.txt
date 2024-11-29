@@ -1,1 +1,0 @@
-sudo ssh -i deployment-test.pem ubuntu@3.15.203.99
