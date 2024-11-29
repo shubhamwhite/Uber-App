@@ -19,9 +19,12 @@ const userRegiValidationSchema = Joi.object({
     'string.min': 'Password must be at least 6 characters long.',
     'any.required': 'Password is required.',
   }),
-  role: Joi.string().valid('driver', 'passenger').default('passenger').messages({
-    'any.only': 'Role must be either driver or passenger.',
-  }),
+  role: Joi.string()
+    .valid('driver', 'passenger')
+    .default('passenger')
+    .messages({
+      'any.only': 'Role must be either driver or passenger.',
+    }),
   socket_id: Joi.string().optional(),
 })
 
@@ -32,7 +35,9 @@ const validateUserRegistration = (req, res, next) => {
   })
 
   if (error) {
-    const validationMessages = error.details.map((detail) => detail.message).join(', ')
+    const validationMessages = error.details
+      .map((detail) => detail.message)
+      .join(', ')
     console.log(validationMessages, 'error message')
     throw CustomError.BadRequest('Validation failed', validationMessages)
   }

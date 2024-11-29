@@ -1,7 +1,9 @@
 const { JwtUtil } = require('../utils/Jwt.util')
 const CustomError = require('../utils/CustomError.util')
 const { blacklistTokenModel: _blacklistTokenModel } = require('../models')
-const { createSuccessResponse: _Success } = require('../constant/response.constant')
+const {
+  createSuccessResponse: _Success,
+} = require('../constant/response.constant')
 
 exports.authUser = async (req, res, next) => {
   const token = req.cookies.token || req.headers.authorization?.split(' ')[1]
