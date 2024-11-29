@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { errorMiddleware, authUser } = require('../middlewares')
+const { errorMiddleware } = require('../middlewares')
 const { registration } = require('../controller/captain.controller')
 const {
   validateCaptainRegistration,

@@ -1,6 +1,5 @@
 const {
-  captainModel: _captainModel,
-  blacklistTokenModel: _blacklistTokenModel,
+  captainModel: _captainModel
 } = require('../models')
 const CustomError = require('../utils/CustomError.util')
 const {
