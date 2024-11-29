@@ -12,7 +12,7 @@ app.use('/api/v1/user', require('../src/router/user.routes'))
 
 // testing api create
 app.get('/', (req, res) => {
-  res.json({ message: 'testing application' })
+  res.json({ message: 'Home route' })
 })
 
 module.exports = app
