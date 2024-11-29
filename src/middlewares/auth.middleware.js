@@ -1,6 +1,6 @@
 const { JwtUtil } = require('../utils/Jwt.util')
 const CustomError = require('../utils/CustomError.util')
-const { userModel: _userModel } = require('../models')
+const { userModel: _userModel, blacklistTokenModel: _blacklistTokenModel } = require('../models')
 const { createSuccessResponse: _Success } = require('../constant/response.constant')
 
 exports.authUser = async (req, res, next) => {
@@ -9,8 +9,8 @@ exports.authUser = async (req, res, next) => {
     return next(new CustomError(401, 'Unauthorized user'))
   }
 
-  const isBlackListed = await _userModel.findOne({ token: token })
-  
+  const isBlackListed = await _blacklistTokenModel.findOne({ token: token })
+
   if (isBlackListed) {
     return res.status(200).json(_Success('Unauthorized'))
   }
