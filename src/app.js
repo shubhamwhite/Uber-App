@@ -9,10 +9,12 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
 app.use('/api/v1/user', require('../src/router/user.routes'))
+app.use('/api/v1/captain', require('../src/router/captain.routes'))
+app.use('/api/v1/health', require('./router/health.routes'))
 
 // testing api create
 app.get('/', (req, res) => {
-  res.json({ message: 'testing application' })
+  res.json({ message: 'Home route' })
 })
 
 module.exports = app

@@ -1,7 +1,11 @@
 const mongoose = require('mongoose')
 const config = require('../config/app.config')
 const clc = require('../helper/cliColor.helper')
-async function connectToDb() {
+const { userModel } = require('../models/user.model')
+const { captainModel } = require('../models/captain.model')
+const { blacklistTokenModel } = require('../models/blackListToken.model')
+
+const connectToDb = async () => {
   try {
     await mongoose.connect(config.DB_CONNECT)
     console.log(clc.success('Connected to the database successfully!'))
@@ -15,4 +19,9 @@ async function connectToDb() {
   })
 }
 
-module.exports = connectToDb
+module.exports = {
+  connectToDb,
+  userModel,
+  blacklistTokenModel,
+  captainModel,
+}
