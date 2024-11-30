@@ -1,11 +1,21 @@
 const router = require('express').Router()
-const { errorMiddleware } = require('../middlewares')
-const { registration } = require('../controller/captain.controller')
+const { errorMiddleware, authUser } = require('../middlewares')
 const {
-  validateCaptainRegistration,
+  registration,
+  login,
+  getProfile,
+  logout,
+} = require('../controller/captain.controller')
+const {
+  validateCapRegistration,
+  validateCapLogin,
 } = require('../validation/captain.validator')
 
-router.route('/register').post(validateCaptainRegistration, registration)
+router.route('/register').post(validateCapRegistration, registration)
+router.route('/login').post(validateCapLogin, login)
+router.route('/profile').get(authUser, getProfile)
+router.route('/logout').post(authUser, logout)
+
 router.use(errorMiddleware)
 
 module.exports = router

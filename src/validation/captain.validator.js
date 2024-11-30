@@ -59,7 +59,7 @@ const captainRegiValidationSchema = Joi.object({
 })
 
 // Middleware function for captain validation
-const validateCaptainRegistration = (req, res, next) => {
+const validateCapRegistration = (req, res, next) => {
   const { error } = captainRegiValidationSchema.validate(req.body, {
     abortEarly: false,
   })
@@ -74,4 +74,32 @@ const validateCaptainRegistration = (req, res, next) => {
   next()
 }
 
-module.exports = { validateCaptainRegistration }
+const capLoginValidationSchema = Joi.object({
+  email: Joi.string().email().required().messages({
+    'string.email': 'Email must be a valid email address.',
+    'any.required': 'Email is required.',
+  }),
+  password: Joi.string().min(6).required().messages({
+    'string.min': 'Password must be at least 6 characters long.',
+    'any.required': 'Password is required.',
+  }),
+})
+
+// Middleware function
+const validateCapLogin = (req, res, next) => {
+  const { error } = capLoginValidationSchema.validate(req.body, {
+    abortEarly: false,
+  })
+
+  if (error) {
+    const validationMessages = error.details
+      .map((detail) => detail.message)
+      .join(', ')
+    console.log(validationMessages, 'error message')
+    throw CustomError.BadRequest('Validation failed', validationMessages)
+  }
+
+  next()
+}
+
+module.exports = { validateCapRegistration, validateCapLogin }
