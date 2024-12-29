@@ -45,7 +45,7 @@ exports.registration = async (req, res, next) => {
     const token = user.generateAuthToken()
 
     res
-      .status(200)
+      .status(201)
       .json(_Success('Captain registration successfully', { user, token }))
   } catch (error) {
     next(error)
