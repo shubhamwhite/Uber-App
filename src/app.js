@@ -14,7 +14,7 @@ app.use('/api/v1/health', require('./router/health.routes'))
  
 // testing api create
 app.get('/', (req, res) => {
-  res.json({ message: 'Home route' })
+  res.json({ message: 'Home route testing for dev' })
 })  
 
 module.exports = app

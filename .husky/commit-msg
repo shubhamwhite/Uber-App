@@ -1,12 +1,18 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+# #!/bin/sh
+# . "$(dirname "$0")/_/husky.sh"
 
-COMMIT_MSG=$(cat "$1")
+# COMMIT_MSG=$(cat "$1")
 
-# Check if the commit message contains one of the keywords: wrn, msg, sug
-if echo "$COMMIT_MSG" | grep -qE '^(wrn|msg|sug)'; then
-  exit 0  # Allow commit if the message starts with one of the keywords
-else
-  echo "Commit message must start with one of the following keywords: wrn, msg, sug."
-  exit 1  # Reject commit if no valid keyword is found
-fi
+# # Check if the commit message contains one of the keywords: wrn, msg, sug
+# if echo "$COMMIT_MSG" | grep -qE '^(wrn|msg|sug)'; then
+#   exit 0  # Allow commit if the message starts with one of the keywords
+# else
+#   echo "Commit message must start with one of the following keywords: wrn, msg, sug."
+#   exit 1  # Reject commit if no valid keyword is found
+# fi
+
+#!/usr/bin/env sh
+
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx --no-install commitlint --edit "$1"
